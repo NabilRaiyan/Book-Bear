@@ -15,8 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('review');
             $table->unsignedTinyInteger('rating');
-
+            $table->unsignedBigInteger('book_id');
             $table->timestamps();
+
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade'); // assigning foreign key and using onDelete to 
+                                                                                                //detele every review related to a book when the book is deleted
         });
     }
 
