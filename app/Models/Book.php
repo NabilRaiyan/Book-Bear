@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
+
 class Book extends Model
 {
     use HasFactory;
@@ -17,5 +18,30 @@ class Book extends Model
     public function scopeSearchTitle(Builder $query, string $title): Builder
     {
         return $query->where('title', 'LIKE', '%' . $title . '%');
+    }
+
+    // getting popular books filtered by date
+    public function scopePopular(Builder $query, $from = null, $to = null):Builder {
+        return $query->withCount([
+            'review' => fn(Builder $q)=>$this->dateRangeFilter($q, $from, $to)
+        ], 'rating')
+            ->orderBy('review_count', 'desc');
+    }
+    // getting books with highest rates
+
+    public function scopeHighestRated(Builder $query, $from = null, $to = null): Builder{
+        return $query->withAvg([
+            'review' => fn(Builder $q) => $this->dateRangeFilter($q, $from, $to)
+        ], 'rating')
+            ->orderBy('review_avg_rating', 'desc');
+    }
+    private function dateRangeFilter(Builder $query, $from = null, $to = null){
+        if ($from && !$to){
+            $query->where('created_at', '>=', $from);
+        }elseif(!$from && $to){
+            $query->where('created_at', '<=', $to);
+        }elseif($from && $to){
+            $query->whereBetween('created_at', [$from, $to]);
+        }
     }
 }
