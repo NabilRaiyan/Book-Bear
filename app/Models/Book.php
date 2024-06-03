@@ -44,4 +44,8 @@ class Book extends Model
             $query->whereBetween('created_at', [$from, $to]);
         }
     }
+
+    public function scopeMinReviews(Builder $query, int $minReviews):Builder{
+        return $query->having('review_count', '>=', $minReviews);
+    }
 }
