@@ -13,11 +13,11 @@
                 class="flex flex-wrap items-center justify-between">
                 <div class="w-full flex-grow sm:w-auto">
                     <a href="{{ route('books.show', $book)}}" class="book-title">{{ $book -> title}}</a>
-                    <span class="book-author">by Piotr Jura</span>
+                    <span class="book-author">by {{ $book->author}}</span>
                 </div>
                 <div>
                     <div class="book-rating">
-                    3.5
+                    
                     </div>
                     <div class="book-review-count">
                     out of 5 reviews

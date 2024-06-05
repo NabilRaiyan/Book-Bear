@@ -45,6 +45,7 @@ class Book extends Model
         }
     }
 
+    // getting min review books
     public function scopeMinReviews(Builder $query, int $minReviews):Builder{
         return $query->having('review_count', '>=', $minReviews);
     }
