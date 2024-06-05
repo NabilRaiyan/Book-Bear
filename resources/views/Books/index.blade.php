@@ -17,10 +17,10 @@
                 </div>
                 <div>
                     <div class="book-rating">
-                    
+                    {{ number_format($book->review_avg_rating , 1)}}
                     </div>
                     <div class="book-review-count">
-                    out of 5 reviews
+                    out of {{ $book->review_count }} {{ Str::plural('review', $book->review_count)}}
                     </div>
                 </div>
                 </div>
@@ -30,7 +30,7 @@
             <li class="mb-4">
                 <div class="empty-book-item">
                     <p class="empty-text">No books found</p>
-                    <a href="#" class="reset-link">Reset criteria</a>
+                    <a href="{{ route('books.index')}}" class="reset-link">Reset criteria</a>
                 </div>
             </li>
         @endforelse
