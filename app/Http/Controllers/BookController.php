@@ -15,7 +15,7 @@ class BookController extends Controller
         $title = $request -> input('title');
         $books = Book::when(
             $title,
-            fn($query, $title) => $query->title($title)
+            fn($query, $title) => $query->SearchTitle($title)
         )->get();
 
         return view('books.index', ['books' => $books]);
