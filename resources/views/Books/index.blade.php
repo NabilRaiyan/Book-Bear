@@ -12,7 +12,7 @@
                 <div
                 class="flex flex-wrap items-center justify-between">
                 <div class="w-full flex-grow sm:w-auto">
-                    <a href="#" class="book-title">Book Title</a>
+                    <a href="{{ route('books.show', $book)}}" class="book-title">{{ $book -> title}}</a>
                     <span class="book-author">by Piotr Jura</span>
                 </div>
                 <div>
