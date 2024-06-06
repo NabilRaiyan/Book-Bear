@@ -3,11 +3,33 @@
 
 @section('content')
     <h1 class="mt-10 mb-10 text-2xl">Books</h1>
+
+    <!-- adding search field -->
     <form method="GET" action="{{ route('books.index')}}" class="flex items-center mb-8">
         <input name="title" type="text" class="mr-5 input h-10" placeholder="Search By Title" value="">
         <button class="btn h-10" type="submit">Search</button>
         <a href="{{ route('books.index')}}" class="ml-5 btn h-10">Clear</a>
     </form>
+
+    <!-- popular book -->
+    <div class="filter-container mb-4 flex">
+        @php
+            $filters = [
+            '' => 'Latest',
+            'popular_last_month' => "Popular Last Month",
+            'popular_last_6month' => "Popular Last 6 Month",
+            'highest_rated_last_month' => "Highest Rated Last Month",
+            'highest_rated_last_6month' => "Highest Rated Last 6 Month",
+
+            ];
+        @endphp
+
+        @foreach ($filters as $key => $label )
+            <a href="#" class="{{ request('filter') === $key ? 'filter-item-active' : 'filter-item'}}">
+                {{ $label }}
+            </a>
+        @endforeach
+    </div>
 
     <ul>
         @forelse ($books as $book )
