@@ -6,7 +6,8 @@
 
     <!-- adding search field -->
     <form method="GET" action="{{ route('books.index')}}" class="flex items-center mb-8">
-        <input name="title" type="text" class="mr-5 input h-10" placeholder="Search By Title" value="">
+        <input name="title" type="text" class="mr-5 input h-10" placeholder="Search By Title" value="{{ request('title')}}">
+        <input type="hidden" name="filter" value="{{ request('filter')}}" />
         <button class="btn h-10" type="submit">Search</button>
         <a href="{{ route('books.index')}}" class="ml-5 btn h-10">Clear</a>
     </form>
@@ -24,8 +25,9 @@
             ];
         @endphp
 
+        <!-- different filter url -->
         @foreach ($filters as $key => $label )
-            <a href="#" class="{{ request('filter') === $key ? 'filter-item-active' : 'filter-item'}}">
+            <a href="{{ route('books.index', [...request()->query(),'filter' => $key])}}" class="{{ request('filter') === $key || (request('filter') === null && $key === '') ?  'filter-item-active' : 'filter-item'}}">
                 {{ $label }}
             </a>
         @endforeach
