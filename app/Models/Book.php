@@ -49,4 +49,34 @@ class Book extends Model
     public function scopeMinReviews(Builder $query, int $minReviews):Builder{
         return $query->having('review_count', '>=', $minReviews);
     }
+
+
+    // popular last month scope
+    public function scopePopularLastMonth(Builder $query) : Builder {
+        return $query->popular(now()->subMonth(), now())
+        ->highestRated(now()->subMonth(), now())
+        ->minReviews(2);
+    }
+
+    // popular last 6 month scope
+    public function scopePopularLast6Month(Builder $query) : Builder {
+        return $query->popular(now()->subMonths(6), now())
+        ->highestRated(now()->subMonths(6), now())
+        ->minReviews(3);
+    }
+
+
+    // highest rated last month scope
+    public function scopeHighestRatedLastMonth(Builder $query) : Builder {
+        return $query->highestRated(now()->subMonth(), now())
+        ->popular(now()->subMonth(), now())
+        ->minReviews(3);
+    }
+
+     // highest rated last 6 month scope
+     public function scopeHighestRatedLast6Month(Builder $query) : Builder {
+        return $query->highestRated(now()->subMonths(6), now())
+        ->popular(now()->subMonths(6), now())
+        ->minReviews(3);
+    }
 }
