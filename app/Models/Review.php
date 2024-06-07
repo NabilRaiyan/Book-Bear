@@ -13,4 +13,12 @@ class Review extends Model
         // defining each review belong to one book
         return $this->belongsTo(Book::class);
     }
+
+    // if the value of revies changes then we forget the cache of reviews
+    protected static function booted()
+    {
+        static::updated(fn(Review $review) => cache()->forget('book:' . $review->book_id));
+        static::deleted(fn(Review $review) => cache()->forget('book:' . $review->book_id));
+
+    }
 }

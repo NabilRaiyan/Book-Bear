@@ -59,11 +59,14 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        
-        return view('books.show', ['book' => $book->load([
-            // loading latest reviews to oldest reviews
+        $cacheKey = 'book:' . $book->id;
+
+        // loading latest reviews to oldest reviews and caching
+        $book = cache()->remember($cacheKey, 3600, fn() => $book -> load([
             'review' => fn($query) => $query->latest()
-        ])]);
+        ]));
+
+        return view('books.show', ['book' => $book]);
     }
 
     /**
