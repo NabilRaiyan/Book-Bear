@@ -28,13 +28,13 @@ class Book extends Model
             ->orderBy('review_count', 'desc');
     }
     // getting books with highest rates
-
     public function scopeHighestRated(Builder $query, $from = null, $to = null): Builder{
         return $query->withAvg([
             'review' => fn(Builder $q) => $this->dateRangeFilter($q, $from, $to)
         ], 'rating')
             ->orderBy('review_avg_rating', 'desc');
     }
+    // filtering books by a range of dates
     private function dateRangeFilter(Builder $query, $from = null, $to = null){
         if ($from && !$to){
             $query->where('created_at', '>=', $from);
