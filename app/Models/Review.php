@@ -18,6 +18,7 @@ class Review extends Model
     // if the value of revies changes then we forget the cache of reviews
     protected static function booted()
     {
+        // caching
         static::updated(fn(Review $review) => cache()->forget('book:' . $review->book_id));
         static::deleted(fn(Review $review) => cache()->forget('book:' . $review->book_id));
 
