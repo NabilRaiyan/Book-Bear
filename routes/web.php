@@ -7,4 +7,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// registering routes
 Route::resource('books', BookController::class);
