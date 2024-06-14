@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-
+<!-- content section -->
 @section('content')
     <h1 class="mt-10 mb-10 text-2xl">Books</h1>
 
