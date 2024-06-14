@@ -22,6 +22,7 @@
   <div>
     <h2 class="mb-4 text-xl font-semibold">Reviews</h2>
     <ul>
+      <!-- adding books rating -->
       @forelse ($book->review as $review)
         <li class="book-item mb-4">
           <div>
