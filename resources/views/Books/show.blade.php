@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+<!-- adding content section -->
 @section('content')
   <div class="mb-4">
     <h1 class="sticky top-0 mb-2 text-2xl">{{ $book->title }}</h1>
