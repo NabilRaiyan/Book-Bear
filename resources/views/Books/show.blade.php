@@ -17,6 +17,7 @@
     </div>
   </div>
 
+  <!-- Adding reviews section -->
   <div>
     <h2 class="mb-4 text-xl font-semibold">Reviews</h2>
     <ul>
