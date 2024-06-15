@@ -15,7 +15,7 @@ class Review extends Model
         return $this->belongsTo(Book::class);
     }
 
-    
+
     // if the value of revies changes then we forget the cache of reviews
     protected static function booted()
     {
@@ -25,4 +25,5 @@ class Review extends Model
 
     }
 
+    
 }
