@@ -13,8 +13,6 @@
         <a href="{{ route('books.index')}}" class="ml-5 btn h-10">Clear</a>
     </form>
 
-
-    
     <!-- popular book -->
     <div class="filter-container mb-4 flex">
         @php
