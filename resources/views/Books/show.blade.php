@@ -23,6 +23,11 @@
     </div>
   </div>
 
+  <!-- add reviews  -->
+   <div class="mb-4">
+      <a href="{{route('books.reviews.create', $book)}}" class="reset-link">Comment</a>
+   </div>
+
   <!-- Adding reviews section -->
   <div>
     <h2 class="mb-4 text-xl font-semibold">Reviews</h2>
