@@ -8,6 +8,7 @@ Route::get('/', function () {
     return redirect()->route('books.index');
 });
 
+
 // registering book routes
 Route::resource('books', BookController::class);
 
